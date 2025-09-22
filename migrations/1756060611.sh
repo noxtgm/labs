@@ -16,5 +16,4 @@ reinstall_package_opr walker-bin
 reinstall_package_opr wl-screenrec
 reinstall_package_opr python-terminaltexteffects
 reinstall_package_opr tzupdate
-reinstall_package_opr typora
 reinstall_package_opr ttf-ia-writer
