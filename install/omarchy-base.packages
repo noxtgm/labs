@@ -1,8 +1,6 @@
 # Omarchy core package list installed via install/packages.sh
 # This file is also used by the ISO builder when determining needs
 
-1password-beta
-1password-cli
 alacritty
 asdcontrol-git
 avahi
