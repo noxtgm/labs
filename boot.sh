@@ -63,8 +63,11 @@ ansi_art='
 clear
 echo -e "\n$ansi_art\n"
 
-echo -e "                Welcome agent, please enter your password to begin the installation process...\n"
+echo -e "Welcome agent, please enter your password to begin the installation process..."
 sudo pacman -Syu --noconfirm --needed git >/dev/null
+
+wait 3
+clear
 
 REPOSITORY_REF="${REPOSITORY_REF:-main}"
 REPOSITORY_NAME="${REPOSITORY_NAME:-labs}"
@@ -82,3 +85,4 @@ if [[ $REPOSITORY_REF != "main" ]]; then
 fi
 
 echo -e "\nInstallation starting..."
+source ~/.local/share/labs/install.sh
