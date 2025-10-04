@@ -1,4 +1,6 @@
 # Core packages to be installed with pacman
 
-ghostty
-yay
+hyprland                    # Window Manager
+ghostty                     # Terminal
+sddm                        # Display Manager
+yay                         # AUR package manager

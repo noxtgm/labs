@@ -4,8 +4,11 @@
 set -eEo pipefail
 
 # Repository variables
-REPOSITORY_NAME="labs"
+export REPO_NAME="labs"
 
 # Define locations
-export REPOSITORY_PATH="$HOME/.local/share/$REPOSITORY_NAME"
-export REPOSITORY_INSTALL="$REPOSITORY_PATH/install"
+export REPO_PATH="$HOME/.local/share/$REPO_NAME"
+export REPO_INSTALL="$REPO_PATH/install"
+
+# Install
+source "$REPO_INSTALL/packaging/all.sh"

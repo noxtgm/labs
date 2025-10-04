@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Repository variables
-REPOSITORY_REF="${REPOSITORY_REF:-main}"
-REPOSITORY_NAME="${REPOSITORY_NAME:-labs}"
-REPOSITORY_AUTHOR="${REPOSITORY_AUTHOR:-noxtgm}"
+REPO_REF="${REPO_REF:-main}"
+REPO_NAME="${REPO_NAME:-labs}"
+REPO_AUTHOR="${REPO_AUTHOR:-noxtgm}"
 
 # Colors
 RED='\033[0;31m'
@@ -92,16 +92,16 @@ sleep 4
 clear
 
 # Clone the default repository unless a specific repository is specified
-echo -e "${BLUE}[INFO] Retrieving system components from:${NC} https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git"
-git clone "https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git" ~/.local/share/labs >/dev/null
+echo -e "${BLUE}[INFO] Retrieving system components from:${NC} https://github.com/${REPO_AUTHOR}/${REPO_NAME}.git"
+git clone "https://github.com/${REPO_AUTHOR}/${REPO_NAME}.git" ~/.local/share/labs >/dev/null
 
 sleep 2
 
 # Switch to the default branch unless a specific branch is specified
-if [[ $REPOSITORY_REF != "main" ]]; then
-    echo -e "\n${BLUE}[INFO] Switching to operational branch:${NC} $REPOSITORY_REF"
+if [[ $REPO_REF != "main" ]]; then
+    echo -e "\n${BLUE}[INFO] Switching to operational branch:${NC} $REPO_REF"
     cd ~/.local/share/labs
-    git fetch origin "${REPOSITORY_REF}" && git checkout "${REPOSITORY_REF}"
+    git fetch origin "${REPO_REF}" && git checkout "${REPO_REF}"
     cd -
 fi
 
