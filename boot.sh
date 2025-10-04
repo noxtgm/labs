@@ -69,9 +69,9 @@ rm -rf ~/.local/share/labs/
 
 sleep 2
 echo -e "\n\033[1;32m[SUCCESS] Agent authentication successful.\033[0m"
-sleep 1
+sleep 2
 echo -e "\n\033[1;34m[INFO] Initializing secure communication protocols...\033[0m"
-sleep 1
+sleep 2
 echo -e "\n\033[1;34m[INFO] Establishing encrypted connection...\033[0m"
 sleep 4
 
