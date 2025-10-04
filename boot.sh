@@ -65,13 +65,13 @@ echo -e "\033[1;37mWelcome agent, please enter your password to begin the instal
 sudo pacman -Syu --noconfirm --needed git >/dev/null
 rm -rf ~/.local/share/labs/
 
-sleep 3
+sleep 2
 echo -e "\033[1;32m[SUCCESS] Agent authentication successful.\033[0m"
 sleep 1
 echo -e "\033[1;34m[INFO] Initializing secure communication protocols...\033[0m"
 sleep 1
 echo -e "\033[1;34m[INFO] Establishing encrypted connection...\033[0m"
-sleep 5
+sleep 4
 
 clear
 
