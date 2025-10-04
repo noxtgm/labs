@@ -68,11 +68,11 @@ sudo pacman -Syu --noconfirm --needed git >/dev/null
 rm -rf ~/.local/share/labs/
 
 sleep 2
-echo -e "\033[1;32m[SUCCESS] Agent authentication successful.\033[0m"
+echo -e "\n\033[1;32m[SUCCESS] Agent authentication successful.\033[0m"
 sleep 1
-echo -e "\033[1;34m[INFO] Initializing secure communication protocols...\033[0m"
+echo -e "\n\033[1;34m[INFO] Initializing secure communication protocols...\033[0m"
 sleep 1
-echo -e "\033[1;34m[INFO] Establishing encrypted connection...\033[0m"
+echo -e "\n\033[1;34m[INFO] Establishing encrypted connection...\033[0m"
 sleep 4
 
 clear
@@ -81,16 +81,22 @@ REPOSITORY_REF="${REPOSITORY_REF:-main}"
 REPOSITORY_NAME="${REPOSITORY_NAME:-labs}"
 REPOSITORY_AUTHOR="${REPOSITORY_AUTHOR:-noxtgm}"
 
-echo -e "\033[1;36m[INFO] Retrieving operational system components from: https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git\033[0m"
+echo -e "\033[1;34m[INFO] Retrieving system components from:\033[0m https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git"
 git clone "https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git" ~/.local/share/labs >/dev/null
 
 if [[ $REPOSITORY_REF != "main" ]]; then
-  echo -e "\033[1;32m[SWITCH] Switching to operational branch: $REPOSITORY_REF\033[0m"
-  cd ~/.local/share/labs
-  git fetch origin "${REPOSITORY_REF}" && git checkout "${REPOSITORY_REF}"
-  cd -
+    echo -e "\033[1;34m[INFO] Switching to operational branch:\033[0m $REPOSITORY_REF"
+    cd ~/.local/share/labs
+    git fetch origin "${REPOSITORY_REF}" && git checkout "${REPOSITORY_REF}"
+    cd -
 fi
 
-echo -e "\033[1;32m[SUCCESS] Repository secured. Beginning Chaos Insurgency system deployment...\033[0m"
+echo -e "\033[1;32m[SUCCESS] Repository secured. Beginning system deployment...\033[0m"
+
+clear
+
 echo -e "\033[1;33m[WARNING] This system contains classified information. Unauthorized access is prohibited.\033[0m"
+
+sleep 4
+
 source ~/.local/share/labs/install.sh
