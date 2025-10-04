@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Repository variables
+REPOSITORY_REF="${REPOSITORY_REF:-main}"
+REPOSITORY_NAME="${REPOSITORY_NAME:-labs}"
+REPOSITORY_AUTHOR="${REPOSITORY_AUTHOR:-noxtgm}"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+BOLD_WHITE='\033[1;37m'
+NC='\033[0m'
+
+# ASCII logo
 ascii_logo='
                                                   &&&&&&&&&                                                  
                                         &&&&&&X;;;;: ;;;&&&&&&&&&&&&&                                        
@@ -63,45 +77,41 @@ ascii_logo='
 clear
 
 echo -e "\n$ascii_logo\n"
-echo -e "\033[1;37mWelcome agent, please enter your password to begin the installation process.\033[0m"
+echo -e "${BOLD_WHITE}Welcome agent, please enter your password to begin the installation process.${NC}"
 sudo pacman -Syu --noconfirm --needed git >/dev/null
 rm -rf ~/.local/share/labs/
 
 sleep 2
-echo -e "\n\033[1;32m[SUCCESS] Agent authentication successful.\033[0m"
+echo -e "\n${GREEN}[SUCCESS] Agent authentication successful.${NC}"
 sleep 2
-echo -e "\n\033[1;34m[INFO] Initializing secure communication protocols...\033[0m"
+echo -e "\n${BLUE}[INFO] Initializing secure communication protocols...${NC}"
 sleep 2
-echo -e "\n\033[1;34m[INFO] Establishing encrypted connection...\033[0m"
+echo -e "\n${BLUE}[INFO] Establishing encrypted connection...${NC}"
 sleep 4
 
 clear
 
-REPOSITORY_REF="${REPOSITORY_REF:-main}"
-REPOSITORY_NAME="${REPOSITORY_NAME:-labs}"
-REPOSITORY_AUTHOR="${REPOSITORY_AUTHOR:-noxtgm}"
-
 # Clone the default repository unless a specific repository is specified
-echo -e "\033[1;34m[INFO] Retrieving system components from:\033[0m https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git"
+echo -e "${BLUE}[INFO] Retrieving system components from:${NC} https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git"
 git clone "https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git" ~/.local/share/labs >/dev/null
 
 sleep 2
 
 # Switch to the default branch unless a specific branch is specified
 if [[ $REPOSITORY_REF != "main" ]]; then
-    echo -e "\n\033[1;34m[INFO] Switching to operational branch:\033[0m $REPOSITORY_REF"
+    echo -e "\n${BLUE}[INFO] Switching to operational branch:${NC} $REPOSITORY_REF"
     cd ~/.local/share/labs
     git fetch origin "${REPOSITORY_REF}" && git checkout "${REPOSITORY_REF}"
     cd -
 fi
 
-echo -e "\n\033[1;32m[SUCCESS] Repository secured. Beginning system deployment...\033[0m"
+echo -e "\n${GREEN}[SUCCESS] Repository secured. Beginning system deployment...${NC}"
 
 sleep 4
 
 clear
 
-echo -e "\033[1;33m[WARNING] This system contains classified information. Unauthorized access is prohibited.\033[0m\n"
+echo -e "${YELLOW}[WARNING] This system contains classified information. Unauthorized access is prohibited.${NC}\n"
 
 sleep 3
 
