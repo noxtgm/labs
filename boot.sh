@@ -63,10 +63,16 @@ ansi_art='
 clear
 echo -e "\n$ansi_art\n"
 
-echo -e "Welcome agent, please enter your password to begin the installation process..."
+echo -e "\033[0;30mWelcome agent, please enter your password to begin the installation process.\033[0m"
 sudo pacman -Syu --noconfirm --needed git >/dev/null
 
 wait 3
+
+echo -e "\033[1;32m[SUCCESS] Agent authentication verified. Welcome to the Chaos Insurgency.\033[0m"
+echo -e "\033[1;33m[INFO] Initializing secure communication protocols...\033[0m"
+echo -e "\033[1;33m[INFO] Establishing encrypted connection to Insurgency networks...\033[0m"
+
+wait 6
 clear
 
 REPOSITORY_REF="${REPOSITORY_REF:-main}"
@@ -74,15 +80,17 @@ REPOSITORY_NAME="${REPOSITORY_NAME:-labs}"
 REPOSITORY_AUTHOR="${REPOSITORY_AUTHOR:-noxtgm}"
 
 rm -rf ~/.local/share/labs/
-echo -e "\nCloning from: https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git"
+echo -e "\033[1;33m[INFO] Establishing secure connection to Chaos Insurgency repository...\033[0m"
+echo -e "\033[1;36m[DOWNLOAD] Retrieving operational system components from: https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git\033[0m"
 git clone "https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git" ~/.local/share/labs >/dev/null
 
 if [[ $REPOSITORY_REF != "main" ]]; then
-  echo -e "\e[32mUsing branch: $REPOSITORY_REF\e[0m"
+  echo -e "\033[1;32m[SWITCH] Switching to operational branch: $REPOSITORY_REF\033[0m"
   cd ~/.local/share/labs
   git fetch origin "${REPOSITORY_REF}" && git checkout "${REPOSITORY_REF}"
   cd -
 fi
 
-echo -e "\nInstallation starting..."
+echo -e "\033[1;32m[SUCCESS] Repository secured. Beginning Chaos Insurgency system deployment...\033[0m"
+echo -e "\033[1;33m[WARNING] This system contains classified information. Unauthorized access is prohibited.\033[0m"
 source ~/.local/share/labs/install.sh
