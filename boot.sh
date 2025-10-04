@@ -85,17 +85,17 @@ echo -e "\033[1;34m[INFO] Retrieving system components from:\033[0m https://gith
 git clone "https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git" ~/.local/share/labs >/dev/null
 
 if [[ $REPOSITORY_REF != "main" ]]; then
-    echo -e "\033[1;34m[INFO] Switching to operational branch:\033[0m $REPOSITORY_REF"
+    echo -e "\n\033[1;34m[INFO] Switching to operational branch:\033[0m $REPOSITORY_REF"
     cd ~/.local/share/labs
     git fetch origin "${REPOSITORY_REF}" && git checkout "${REPOSITORY_REF}"
     cd -
 fi
 
-echo -e "\033[1;32m[SUCCESS] Repository secured. Beginning system deployment...\033[0m"
+echo -e "\n\033[1;32m[SUCCESS] Repository secured. Beginning system deployment...\033[0m"
 
 clear
 
-echo -e "\033[1;33m[WARNING] This system contains classified information. Unauthorized access is prohibited.\033[0m"
+echo -e "\033[1;33m[WARNING] This system contains classified information. Unauthorized access is prohibited.\033[0m\n"
 
 sleep 4
 
