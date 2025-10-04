@@ -1,7 +1,6 @@
 #!/bin/bash
 
-clear
-echo -e "
+ascii_logo='
                                                   &&&&&&&&&                                                  
                                         &&&&&&X;;;;: ;;;&&&&&&&&&&&&&                                        
                                    &&&&  ;;;;;;;;;   ;;&&&&&&&&&X;;;;;&&&&                                   
@@ -59,8 +58,11 @@ echo -e "
                                    &&&&     &&&&&&&&&&                &&&&                                   
                                         &&&&&&&&&&&&&        &&&&&&&&                                        
                                                   &&&&&&&&&                                                  
-"
+'
 
+clear
+
+echo -e "\n$ascii_logo\n"
 echo -e "\033[1;37mWelcome agent, please enter your password to begin the installation process.\033[0m"
 sudo pacman -Syu --noconfirm --needed git >/dev/null
 rm -rf ~/.local/share/labs/
@@ -79,8 +81,7 @@ REPOSITORY_REF="${REPOSITORY_REF:-main}"
 REPOSITORY_NAME="${REPOSITORY_NAME:-labs}"
 REPOSITORY_AUTHOR="${REPOSITORY_AUTHOR:-noxtgm}"
 
-echo -e "\033[1;33m[INFO] Establishing secure connection to Chaos Insurgency repository...\033[0m"
-echo -e "\033[1;36m[DOWNLOAD] Retrieving operational system components from: https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git\033[0m"
+echo -e "\033[1;36m[INFO] Retrieving operational system components from: https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git\033[0m"
 git clone "https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git" ~/.local/share/labs >/dev/null
 
 if [[ $REPOSITORY_REF != "main" ]]; then
