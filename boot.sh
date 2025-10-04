@@ -64,3 +64,20 @@ clear
 echo -e "\n$ansi_art\n"
 
 sudo pacman -Syu --noconfirm --needed git
+
+REPOSITORY_REF="${REPOSITORY_REF:-main}"
+REPOSITORY_NAME="${REPOSITORY_NAME:-labs}"
+REPOSITORY_AUTHOR="${REPOSITORY_AUTHOR:-noxtgm}"
+
+rm -rf ~/.local/share/labs/
+echo -e "\nCloning from: https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git"
+git clone "https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git" ~/.local/share/labs >/dev/null
+
+if [[ $REPOSITORY_REF != "main" ]]; then
+  echo -e "\e[32mUsing branch: $REPOSITORY_REF\e[0m"
+  cd ~/.local/share/labs
+  git fetch origin "${REPOSITORY_REF}" && git checkout "${REPOSITORY_REF}"
+  cd -
+fi
+
+echo -e "\nInstallation starting..."
