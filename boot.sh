@@ -84,6 +84,8 @@ REPOSITORY_AUTHOR="${REPOSITORY_AUTHOR:-noxtgm}"
 echo -e "\033[1;34m[INFO] Retrieving system components from:\033[0m https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git"
 git clone "https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git" ~/.local/share/labs >/dev/null
 
+sleep 2
+
 if [[ $REPOSITORY_REF != "main" ]]; then
     echo -e "\n\033[1;34m[INFO] Switching to operational branch:\033[0m $REPOSITORY_REF"
     cd ~/.local/share/labs
@@ -92,6 +94,8 @@ if [[ $REPOSITORY_REF != "main" ]]; then
 fi
 
 echo -e "\n\033[1;32m[SUCCESS] Repository secured. Beginning system deployment...\033[0m"
+
+sleep 4
 
 clear
 
