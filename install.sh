@@ -9,7 +9,7 @@ export REPO_NAME="labs"
 # Define locations
 export REPO_PATH="$HOME/.local/share/$REPO_NAME"
 export REPO_INSTALL="$REPO_PATH/install"
-export REPO_INSTALL_LOG_FILE="/var/log/$REPO_NAME-install.log"
+export REPO_INSTALL_LOG_FILE="$HOME/.local/share/$REPO_NAME/install.log"
 
 # Install
 source "$REPO_INSTALL/helpers/all.sh"
