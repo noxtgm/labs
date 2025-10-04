@@ -63,7 +63,7 @@ ansi_art='
 clear
 echo -e "\n$ansi_art\n"
 
-sudo pacman -Syu --noconfirm --needed git
+sudo pacman -Syu --noconfirm --needed git >/dev/null
 
 REPOSITORY_REF="${REPOSITORY_REF:-main}"
 REPOSITORY_NAME="${REPOSITORY_NAME:-labs}"
