@@ -1,6 +1,7 @@
 #!/bin/bash
 
-ansi_art='
+clear
+echo -e "
                                                   &&&&&&&&&                                                  
                                         &&&&&&X;;;;: ;;;&&&&&&&&&&&&&                                        
                                    &&&&  ;;;;;;;;;   ;;&&&&&&&&&X;;;;;&&&&                                   
@@ -58,10 +59,7 @@ ansi_art='
                                    &&&&     &&&&&&&&&&                &&&&                                   
                                         &&&&&&&&&&&&&        &&&&&&&&                                        
                                                   &&&&&&&&&                                                  
-'
-
-clear
-echo -e "\n$ansi_art\n"
+"
 
 echo -e "\033[0;30mWelcome agent, please enter your password to begin the installation process.\033[0m"
 sudo pacman -Syu --noconfirm --needed git >/dev/null
