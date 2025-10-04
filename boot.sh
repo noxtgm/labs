@@ -6,12 +6,12 @@ REPO_NAME="${REPO_NAME:-labs}"
 REPO_AUTHOR="${REPO_AUTHOR:-noxtgm}"
 
 # Colors
+NC='\033[0m'
 RED='\033[0;31m'
+BLUE='\033[0;34m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
 BOLD_WHITE='\033[1;37m'
-NC='\033[0m'
 
 # ASCII logo
 ascii_logo='
@@ -77,6 +77,7 @@ ascii_logo='
 clear
 
 echo -e "\n$ascii_logo\n"
+echo -e "${RED}[ERROR] Test.${NC}"
 echo -e "${BOLD_WHITE}Welcome agent, please enter your password to begin the installation process.${NC}"
 sudo pacman -Syu --noconfirm --needed git >/dev/null
 rm -rf ~/.local/share/labs/

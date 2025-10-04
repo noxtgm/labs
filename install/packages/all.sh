@@ -1,1 +1,1 @@
-run_logged $REPO_INSTALL/packaging/base.sh
+run_logged $REPO_INSTALL/packages/base.sh
