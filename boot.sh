@@ -61,17 +61,17 @@ echo -e "
                                                   &&&&&&&&&                                                  
 "
 
-echo -e "\033[1;31mWelcome agent, please enter your password to begin the installation process.\033[0m"
+echo -e "\033[1;37mWelcome agent, please enter your password to begin the installation process.\033[0m"
 sudo pacman -Syu --noconfirm --needed git >/dev/null
 rm -rf ~/.local/share/labs/
 
-wait 10
+sleep 10
 echo -e "\033[1;32m[SUCCESS] Agent authentication successful.\033[0m"
-wait 3
+sleep 3
 echo -e "\033[1;33m[INFO] Initializing secure communication protocols...\033[0m"
-wait 3
+sleep 3
 echo -e "\033[1;33m[INFO] Establishing encrypted connection...\033[0m"
-wait 10
+sleep 10
 
 clear
 
