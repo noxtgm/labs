@@ -39,15 +39,15 @@ ascii_logo='
     &&                 :;;;;;;;;;;;;;;;;;&&;;;;;;;;;;;&;;;;;;;;;;;; &&;;;;;;;;;;;   ; ;;;;;;;;;;;;;;;;;&&    
     &                 ;;;;;;;;;;;;;;;;;;;;;&;;;;;;;;;;$;;;;;;;;;;;&&  ;;;;;;;;;;;;;;;;;        ;;;;;;;;;&    
    &&&&              ;;;;;;;;;;;;;;;;;;;;;;;;&;;;;;;;;+;;;;;;;;;&$;;; ;;;;;;;;;;;;;;;;;;;        ;;;;;;;&&   
-   &&&&&&             ;;;;;;;;;;;;;;;;;;;;;;;;&;;+XXXXXXXX&;;;+;;;;;;  :;;;;;;;;;;;;;;;             ;;;;&&   
-   &&&&&&&&&          ;;;;;;;;;;;;;;;;;;;;;;;;;&XXXXXXXXXXXXX;;;;;;;;;   ;;;;;;;;;;;;;              ;;;;;&   
-   &&&&&&&&&&&&&&&    ;;;;;;;;;;;;;;;;;;;;;;;;$XXXXXXXXXXXXXXX;;;;;;;;;   ;;;;;;;;;                  ;;;;&   
-  &&&&&&&&&&&&&&&&&&&&&&&&x;;;;;;;;;;;;;;;;;;$XXXXXXXXXXXXXXXXX;;;;;;;;;; ;;;;;;                      ;;;&   
-  &&   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&$XXXXXXXXXXXXXXXXX;;;;;;;;;;;;;                          ;;;&   
-  &&                   ;;;;;;;;;;;;;;;;;;;;;;&XXXXXXXXXXXXXXXXX+$&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&X;&   
-   &                    ;;;;;;;;;;;;;;;;;;;;;;XXXXXXXXXXXXXXXXx;;;;;;;;;;;;;;;;;;    &&&&&&&&&&&&&&&&&&&&&   
-   &                     ;;;;;;;;;;;;;;;;;;;;;;XXXXXXXXXXXXXXx;;;;;;;;;;;;;;;;;;;            &&&&&&&&&&&&&   
-   &&                      ;;;;;;;;;     ;;;;;&;;XXXXXXXXXX&;;;;;;;;;;;;;;;;;;;;                  &&&&&&&&   
+   &&&&&&             ;;;;;;;;;;;;;;;;;;;;;;;;&;;'${RED}'+XXXXXXXX&'${NC}';;;+;;;;;;  :;;;;;;;;;;;;;;;             ;;;;&&   
+   &&&&&&&&&          ;;;;;;;;;;;;;;;;;;;;;;;;;&'${RED}'XXXXXXXXXXXXX'${NC}';;;;;;;;;   ;;;;;;;;;;;;;              ;;;;;&   
+   &&&&&&&&&&&&&&&    ;;;;;;;;;;;;;;;;;;;;;;;;'${RED}'$XXXXXXXXXXXXXXX'${NC}';;;;;;;;;   ;;;;;;;;;                  ;;;;&   
+  &&&&&&&&&&&&&&&&&&&&&&&&x;;;;;;;;;;;;;;;;;;'${RED}'$XXXXXXXXXXXXXXXXX'${NC}';;;;;;;;;; ;;;;;;                      ;;;&   
+  &&   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'${RED}'$XXXXXXXXXXXXXXXXX'${NC}';;;;;;;;;;;;;                          ;;;&   
+  &&                   ;;;;;;;;;;;;;;;;;;;;;;'${RED}'&XXXXXXXXXXXXXXXXX'${NC}'+$&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&X;&   
+   &                    ;;;;;;;;;;;;;;;;;;;;;;'${RED}'XXXXXXXXXXXXXXXXx'${NC}';;;;;;;;;;;;;;;;;;    &&&&&&&&&&&&&&&&&&&&&   
+   &                     ;;;;;;;;;;;;;;;;;;;;;;'${RED}'XXXXXXXXXXXXXXx'${NC}';;;;;;;;;;;;;;;;;;;            &&&&&&&&&&&&&   
+   &&                      ;;;;;;;;;     ;;;;;&;;'${RED}'XXXXXXXXXX&'${NC}';;;;;;;;;;;;;;;;;;;;                  &&&&&&&&   
    &&                                       &;;;;;;;;&&x;;;;;&;;;;;;;;;;;;;;;;                       &&&&&   
     &                                     && ;;;;;;;;x;;;;;;;;;&;;;;;;;;;;;;;                          &&    
     &&                                  &&  ;;;;;;;;;$;;;;;;;;;;;&;;;;;;;;;                            &&    
@@ -77,7 +77,6 @@ ascii_logo='
 clear
 
 echo -e "\n$ascii_logo\n"
-echo -e "${RED}[ERROR] Test.${NC}"
 echo -e "${BOLD_WHITE}Welcome agent, please enter your password to begin the installation process.${NC}"
 sudo pacman -Syu --noconfirm --needed git >/dev/null
 rm -rf ~/.local/share/labs/
@@ -93,14 +92,14 @@ sleep 4
 clear
 
 # Clone the default repository unless a specific repository is specified
-echo -e "${BLUE}[INFO] Retrieving system components from:${NC} https://github.com/${REPO_AUTHOR}/${REPO_NAME}.git"
+echo -e "${BLUE}[INFO] Retrieving system components from:${NC} ${BOLD_WHITE}https://github.com/${REPO_AUTHOR}/${REPO_NAME}.git${NC}"
 git clone "https://github.com/${REPO_AUTHOR}/${REPO_NAME}.git" ~/.local/share/labs >/dev/null
 
 sleep 2
 
 # Switch to the default branch unless a specific branch is specified
 if [[ $REPO_REF != "main" ]]; then
-    echo -e "\n${BLUE}[INFO] Switching to operational branch:${NC} $REPO_REF"
+    echo -e "\n${BLUE}[INFO] Switching to operational branch:${NC} ${BOLD_WHITE}$REPO_REF${NC}"
     cd ~/.local/share/labs
     git fetch origin "${REPO_REF}" && git checkout "${REPO_REF}"
     cd -
