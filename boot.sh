@@ -81,11 +81,13 @@ REPOSITORY_REF="${REPOSITORY_REF:-main}"
 REPOSITORY_NAME="${REPOSITORY_NAME:-labs}"
 REPOSITORY_AUTHOR="${REPOSITORY_AUTHOR:-noxtgm}"
 
+# Clone the default repository unless a specific repository is specified
 echo -e "\033[1;34m[INFO] Retrieving system components from:\033[0m https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git"
 git clone "https://github.com/${REPOSITORY_AUTHOR}/${REPOSITORY_NAME}.git" ~/.local/share/labs >/dev/null
 
 sleep 2
 
+# Switch to the default branch unless a specific branch is specified
 if [[ $REPOSITORY_REF != "main" ]]; then
     echo -e "\n\033[1;34m[INFO] Switching to operational branch:\033[0m $REPOSITORY_REF"
     cd ~/.local/share/labs
@@ -101,6 +103,7 @@ clear
 
 echo -e "\033[1;33m[WARNING] This system contains classified information. Unauthorized access is prohibited.\033[0m\n"
 
-sleep 4
+sleep 3
 
+# Begin the installation process
 source ~/.local/share/labs/install.sh
