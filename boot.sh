@@ -39,15 +39,15 @@ ascii_logo='
     &&                 :;;;;;;;;;;;;;;;;;&&;;;;;;;;;;;&;;;;;;;;;;;; &&;;;;;;;;;;;   ; ;;;;;;;;;;;;;;;;;&&    
     &                 ;;;;;;;;;;;;;;;;;;;;;&;;;;;;;;;;$;;;;;;;;;;;&&  ;;;;;;;;;;;;;;;;;        ;;;;;;;;;&    
    &&&&              ;;;;;;;;;;;;;;;;;;;;;;;;&;;;;;;;;+;;;;;;;;;&$;;; ;;;;;;;;;;;;;;;;;;;        ;;;;;;;&&   
-   &&&&&&             ;;;;;;;;;;;;;;;;;;;;;;;;&;;'${RED}'+XXXXXXXX&'${NC}';;;+;;;;;;  :;;;;;;;;;;;;;;;             ;;;;&&   
-   &&&&&&&&&          ;;;;;;;;;;;;;;;;;;;;;;;;;&'${RED}'XXXXXXXXXXXXX'${NC}';;;;;;;;;   ;;;;;;;;;;;;;              ;;;;;&   
+   &&&&&&             ;;;;;;;;;;;;;;;;;;;;;;;;&;;'${RED}'+XXXXXXXX&+'${NC}';;&;;;;;;  :;;;;;;;;;;;;;;;             ;;;;&&   
+   &&&&&&&&&          ;;;;;;;;;;;;;;;;;;;;;;;;;'${RED}'&XXXXXXXXXXXXX'${NC}';;;;;;;;;   ;;;;;;;;;;;;;              ;;;;;&   
    &&&&&&&&&&&&&&&    ;;;;;;;;;;;;;;;;;;;;;;;;'${RED}'$XXXXXXXXXXXXXXX'${NC}';;;;;;;;;   ;;;;;;;;;                  ;;;;&   
   &&&&&&&&&&&&&&&&&&&&&&&&x;;;;;;;;;;;;;;;;;;'${RED}'$XXXXXXXXXXXXXXXXX'${NC}';;;;;;;;;; ;;;;;;                      ;;;&   
   &&   &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&'${RED}'$XXXXXXXXXXXXXXXXX'${NC}';;;;;;;;;;;;;                          ;;;&   
   &&                   ;;;;;;;;;;;;;;;;;;;;;;'${RED}'&XXXXXXXXXXXXXXXXX'${NC}'+$&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&X;&   
    &                    ;;;;;;;;;;;;;;;;;;;;;;'${RED}'XXXXXXXXXXXXXXXXx'${NC}';;;;;;;;;;;;;;;;;;    &&&&&&&&&&&&&&&&&&&&&   
    &                     ;;;;;;;;;;;;;;;;;;;;;;'${RED}'XXXXXXXXXXXXXXx'${NC}';;;;;;;;;;;;;;;;;;;            &&&&&&&&&&&&&   
-   &&                      ;;;;;;;;;     ;;;;;&;;'${RED}'XXXXXXXXXX&'${NC}';;;;;;;;;;;;;;;;;;;;                  &&&&&&&&   
+   &&                      ;;;;;;;;;     ;;;;;&;;'${RED}'XXXXXXXXXX+'${NC}';;;;;;;;;;;;;;;;;;;;                  &&&&&&&&   
    &&                                       &;;;;;;;;&&x;;;;;&;;;;;;;;;;;;;;;;                       &&&&&   
     &                                     && ;;;;;;;;x;;;;;;;;;&;;;;;;;;;;;;;                          &&    
     &&                                  &&  ;;;;;;;;;$;;;;;;;;;;;&;;;;;;;;;                            &&    
@@ -77,12 +77,12 @@ ascii_logo='
 clear
 
 echo -e "\n$ascii_logo\n"
-echo -e "${BOLD_WHITE}Welcome agent, please enter your password to begin the installation process.${NC}"
+echo -e "${BOLD_WHITE}Welcome agent, please enter your password to begin the installation process${NC}"
 sudo pacman -Syu --noconfirm --needed git >/dev/null
 rm -rf ~/.local/share/labs/
 
 sleep 2
-echo -e "\n${GREEN}[SUCCESS] Agent authentication successful.${NC}"
+echo -e "\n${GREEN}[SUCCESS] Agent authentication successful${NC}"
 sleep 2
 echo -e "\n${BLUE}[INFO] Initializing secure communication protocols...${NC}"
 sleep 2
