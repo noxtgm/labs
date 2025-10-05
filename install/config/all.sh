@@ -1,1 +1,1 @@
-run_logged $REPO_INSTALL/config/hyprland.sh
+run_logged "$REPO_INSTALL/config/hyprland.sh"
