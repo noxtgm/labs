@@ -48,7 +48,7 @@ run_logged() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Starting: $script" >>"$REPO_INSTALL_LOG_FILE"
 
     # Use bash -c to create a clean subshell
-    bash -c "source '$script'" </dev/null >>"$REPO_INSTALL_LOG_FILE" 2>&1
+    bash -c "source '$script'" </dev/null 2>&1 | grep -v "\[INFO\]\|\[SUCCESS\]\|\[WARNING\]\|\[ERROR\]" >>"$REPO_INSTALL_LOG_FILE"
     
     local exit_code=$?
 
