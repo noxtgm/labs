@@ -1,1 +1,1 @@
-source $REPO_INSTALL/helpers/logging.sh
+source "$REPO_INSTALL/helpers/logging.sh"

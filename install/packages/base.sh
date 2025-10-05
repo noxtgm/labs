@@ -10,6 +10,19 @@ else
     warning "No core packages to install"
 fi
 
+# Install yay first
+info "Installing yay..."
+if ! command -v yay &> /dev/null; then
+    cd /tmp
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si --noconfirm
+    cd -
+    success "yay installed successfully"
+else
+    info "yay already installed"
+fi
+
 # Install AUR packages
 info "Reading AUR packages..."
 mapfile -t aur_packages < <(grep -v '^#' "$REPO_INSTALL/aur.packages" | grep -v '^$')
