@@ -1,0 +1,14 @@
+# Temporary files
+*.tmp
+
+# Installation logs
+*.log
+install.log
+
+# Backup files
+*.backup.*
+
+# Vim swap files
+*.swp
+*.swo
+*~
