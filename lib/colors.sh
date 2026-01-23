@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Colors
 export NC='\033[0m'
 export RED='\033[0;31m'
 export BLUE='\033[0;34m'
