@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Configure shell to auto-start Hyprland on TTY1
-# Creates a managed profile that can be updated with future installs
 configure_hyprland_autostart() {
     local profile_dir="$HOME/.config/shell"
     local profile_file="$profile_dir/profile"
@@ -13,11 +12,9 @@ configure_hyprland_autostart() {
     
     # Write managed profile with auto-start logic
     cat > "$profile_file" << 'EOF'
-# Managed by labs installer - do not edit manually
-
 # Auto-start Hyprland on TTY1
 if [[ -z "$DISPLAY" && "$XDG_VTNR" == "1" ]]; then
-    exec Hyprland
+    exec start-hyprland
 fi
 EOF
     

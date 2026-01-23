@@ -12,6 +12,7 @@ main() {
     # Configure shell
     configure_hyprland_autostart
     configure_shell_aliases
+    configure_shell_tools
     
     log_success "Installation complete."
     
