@@ -23,8 +23,8 @@ main() {
         fi
     fi
     
-    log_info "Rebooting in 5 seconds..."
-    sleep 5
+    log_info "Rebooting..."
+    sleep 2
     sudo reboot
 }
 

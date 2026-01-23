@@ -1,4 +1,5 @@
-alias ls='eza -lh --group-directories-first --icons=auto'
+alias lsx='eza -l --group-directories-first --icons=auto --time-style=default --no-user'
+alias ls='lsx --no-permissions --no-filesize'
 alias lsa='ls -a'
-alias lt='eza --tree --level=2 --long --icons --git'
-alias lta='lt -a'
+alias tree='eza --tree --level=2 --long --icons --git'
+alias treea='tree -a'
