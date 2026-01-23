@@ -19,5 +19,8 @@ fzf
 zoxide
 ripgrep
 
-# Editor
+# Code editor
 neovim
+
+# Text editor
+obsidian
