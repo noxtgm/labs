@@ -1,10 +1,11 @@
-# Core packages to be installed with pacman
-
-# Build tools (required for AUR)
+# Build tools
 base-devel
 
 # Terminal
 ghostty
+
+# Window switcher
+rofi
 
 # Compositor & widgets
 hyprland
