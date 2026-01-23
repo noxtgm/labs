@@ -3,7 +3,7 @@
 # Parse package list by skipping empty lines and comments
 parse_packages() {
     local file="$1"
-    log_info "Parsing packages from $file..."
+    log_info "Parsing packages from $file..." >&2
     grep -v '^#' "$file" | grep -v '^[[:space:]]*$' | tr '\n' ' '
 }
 
