@@ -5,6 +5,8 @@ export REPO_REF="${REPO_REF:-main}"
 export REPO_NAME="${REPO_NAME:-labs}"
 export REPO_AUTHOR="${REPO_AUTHOR:-noxtgm}"
 export REPO_PATH="${HOME}/.local/share/${REPO_NAME}"
+export REPO_INSTALL="${REPO_PATH}/install"
+export REPO_CONFIG="${REPO_PATH}/config"
 
 # Remove previous installation if it exists
 sudo pacman -Syu --noconfirm --needed git >/dev/null
@@ -21,8 +23,8 @@ if [[ "${current_branch}" != "${REPO_REF}" ]]; then
 fi
 cd - >/dev/null || exit
 
-# Source shared helpers
-source "${REPO_PATH}/lib/helpers.sh"
+# Source shared libraries
+source "${REPO_PATH}/lib/init.sh"
 
 # Run installation process
 source "${REPO_PATH}/install.sh"
