@@ -44,3 +44,63 @@ EOF
     
     log_success "Hyprland auto-start configured."
 }
+
+# Configure shell aliases
+configure_shell_aliases() {
+    local aliases_dir="$HOME/.config/shell/aliases"
+    local bashrc="$HOME/.bashrc"
+    local zshrc="$HOME/.zshrc"
+    
+    # Source line to load all alias files (only if directory exists)
+    local source_line="[[ -d \"$aliases_dir\" ]] && for f in \"$aliases_dir\"/*.sh; do [[ -f \"\$f\" ]] && . \"\$f\"; done"
+    
+    # Configure bash
+    if [[ -f "$bashrc" ]]; then
+        if ! grep -qF "$aliases_dir" "$bashrc" 2>/dev/null; then
+            echo "" >> "$bashrc"
+            echo "$source_line" >> "$bashrc"
+        fi
+    else
+        echo "$source_line" > "$bashrc"
+    fi
+    
+    # Configure zsh
+    if [[ -f "$zshrc" ]]; then
+        if ! grep -qF "$aliases_dir" "$zshrc" 2>/dev/null; then
+            echo "" >> "$zshrc"
+            echo "$source_line" >> "$zshrc"
+        fi
+    fi
+    
+    log_success "Shell aliases configured."
+}
+
+# Configure shell tool integrations (fzf, zoxide, etc.)
+configure_shell_tools() {
+    local tools_dir="$HOME/.config/shell/tools"
+    local bashrc="$HOME/.bashrc"
+    local zshrc="$HOME/.zshrc"
+    
+    # Source line to load all tool files (only if directory exists)
+    local source_line="[[ -d \"$tools_dir\" ]] && for f in \"$tools_dir\"/*.sh; do [[ -f \"\$f\" ]] && . \"\$f\"; done"
+    
+    # Configure bash
+    if [[ -f "$bashrc" ]]; then
+        if ! grep -qF "$tools_dir" "$bashrc" 2>/dev/null; then
+            echo "" >> "$bashrc"
+            echo "$source_line" >> "$bashrc"
+        fi
+    else
+        echo "$source_line" > "$bashrc"
+    fi
+    
+    # Configure zsh
+    if [[ -f "$zshrc" ]]; then
+        if ! grep -qF "$tools_dir" "$zshrc" 2>/dev/null; then
+            echo "" >> "$zshrc"
+            echo "$source_line" >> "$zshrc"
+        fi
+    fi
+    
+    log_success "Shell tools configured."
+}

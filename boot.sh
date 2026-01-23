@@ -2,20 +2,29 @@
 
 set -eo pipefail
 
-# Define environment variables
+# Define environment paths
 export REPO_NAME="${REPO_NAME:-labs}"
 export REPO_AUTHOR="${REPO_AUTHOR:-noxtgm}"
 export REPO_PATH="${HOME}/.local/share/${REPO_NAME}"
 export REPO_INSTALL="${REPO_PATH}/install"
 export REPO_CONFIG="${REPO_PATH}/config"
+export REPO_LIB="${REPO_PATH}/lib"
 
 # Install git if not present
 if ! command -v git &>/dev/null; then
     sudo pacman -S --noconfirm --needed git
 fi
 
-# Remove previous installation if it exists
-rm -rf "${REPO_PATH}"
+# Check if execution is a reinstall
+export IS_REINSTALL=false
+if [[ -d "${REPO_PATH}" ]]; then
+    IS_REINSTALL=true
+fi
+
+# Remove previously existing installation when reinstalling
+if [[ "$IS_REINSTALL" == "true" ]]; then
+    rm -rf "${REPO_PATH}"
+fi
 
 # Clone the repository
 if ! git clone "https://github.com/${REPO_AUTHOR}/${REPO_NAME}.git" "${REPO_PATH}"; then
@@ -24,7 +33,7 @@ if ! git clone "https://github.com/${REPO_AUTHOR}/${REPO_NAME}.git" "${REPO_PATH
 fi
 
 # Source shared libraries
-source "${REPO_PATH}/lib/init.sh"
+source "${REPO_LIB}/init.sh"
 
 # Run installation process
 source "${REPO_PATH}/install.sh"

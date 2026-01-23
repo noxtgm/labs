@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Source shared libraries
-source "${REPO_PATH}/lib/colors.sh"
-source "${REPO_PATH}/lib/logging.sh"
-source "${REPO_PATH}/lib/packages.sh"
-source "${REPO_PATH}/lib/config.sh"
-source "${REPO_PATH}/lib/shell.sh"
+source "${REPO_LIB}/colors.sh"
+source "${REPO_LIB}/logging.sh"
+source "${REPO_LIB}/packages.sh"
+source "${REPO_LIB}/config.sh"
+source "${REPO_LIB}/shell.sh"

@@ -1,12 +1,22 @@
 # Build tools
 base-devel
 
-# Terminal
-ghostty
-
 # Window switcher
 rofi
 
-# Compositor & widgets
+# Environment
 hyprland
 quickshell
+
+# Terminal
+ghostty
+
+# Shell tools
+eza
+fzf
+zoxide
+ripgrep
+fd
+
+# Editor
+neovim

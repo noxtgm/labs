@@ -1,0 +1,8 @@
+alias ls='eza'
+alias l='eza -l'
+alias la='eza -la'
+alias ll='eza -l'
+alias lla='eza -la'
+alias lt='eza --tree'
+alias lta='eza --tree -a'
+alias l.='eza -d .*'
