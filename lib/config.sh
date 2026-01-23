@@ -15,7 +15,10 @@ link_config() {
     [[ -e "$dest" || -L "$dest" ]] && rm -f "$dest"
     
     # Create symlink
-    ln -sf "$src" "$dest"
+    if ! ln -sf "$src" "$dest"; then
+        log_error "Failed to link: $src -> $dest"
+        return 1
+    fi
 }
 
 # Install a specific config by name
@@ -35,8 +38,9 @@ install_config() {
     while IFS= read -r -d '' src_file; do
         local relative_path="${src_file#$REPO_CONFIG/}"
         local dest_file="${HOME}/.config/${relative_path}"
+        
         if link_config "$src_file" "$dest_file"; then
-            ((link_count++))
+            link_count=$((link_count + 1))
         fi
     done < <(find "$config_path" -type f -print0)
     
@@ -57,12 +61,11 @@ install_all_configs() {
     local config_count=0
     
     while IFS= read -r -d '' src_file; do
-        # Get relative path from config directory
         local relative_path="${src_file#$REPO_CONFIG/}"
         local dest_file="${HOME}/.config/${relative_path}"
         
         if link_config "$src_file" "$dest_file"; then
-            ((config_count++))
+            config_count=$((config_count + 1))
         fi
     done < <(find "$REPO_CONFIG" -type f -print0)
     

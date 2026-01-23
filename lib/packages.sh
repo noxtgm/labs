@@ -3,7 +3,6 @@
 # Parse package list by skipping empty lines and comments
 parse_packages() {
     local file="$1"
-    log_info "Parsing packages from $file..." >&2
     grep -v '^#' "$file" | grep -v '^[[:space:]]*$' | tr '\n' ' '
 }
 
@@ -17,9 +16,17 @@ install_yay() {
     log_info "Installing yay..."
     
     local yay_dir="${REPO_INSTALL}/yay"
-    git clone https://aur.archlinux.org/yay.git "$yay_dir"
     
-    (cd "$yay_dir" && makepkg -si --noconfirm)
+    if ! git clone https://aur.archlinux.org/yay.git "$yay_dir"; then
+        log_error "Failed to clone yay repository."
+        return 1
+    fi
+    
+    if ! (cd "$yay_dir" && makepkg -si --noconfirm); then
+        log_error "Failed to build yay."
+        rm -rf "$yay_dir"
+        return 1
+    fi
     
     rm -rf "$yay_dir"
     log_success "yay installed."

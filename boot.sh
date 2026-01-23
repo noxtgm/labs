@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+set -eo pipefail
 
 # Define environment variables
 export REPO_NAME="${REPO_NAME:-labs}"
@@ -9,12 +9,19 @@ export REPO_PATH="${HOME}/.local/share/${REPO_NAME}"
 export REPO_INSTALL="${REPO_PATH}/install"
 export REPO_CONFIG="${REPO_PATH}/config"
 
+# Install git if not present
+if ! command -v git &>/dev/null; then
+    sudo pacman -S --noconfirm --needed git
+fi
+
 # Remove previous installation if it exists
-sudo pacman -Syu --noconfirm --needed git >/dev/null
 rm -rf "${REPO_PATH}"
 
 # Clone the repository
-git clone "https://github.com/${REPO_AUTHOR}/${REPO_NAME}.git" "${REPO_PATH}" >/dev/null
+if ! git clone "https://github.com/${REPO_AUTHOR}/${REPO_NAME}.git" "${REPO_PATH}"; then
+    echo -e "\033[0;31m[ERROR] Failed to clone repository.\033[0m"
+    exit 1
+fi
 
 # Source shared libraries
 source "${REPO_PATH}/lib/init.sh"
