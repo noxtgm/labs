@@ -10,5 +10,3 @@ rofi
 # Compositor & widgets
 hyprland
 quickshell
-qt6-wayland
-qt6-declarative
