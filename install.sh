@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero status
-set -eEo pipefail
-
 # Install packages
 install_packages() {
     install_core_packages

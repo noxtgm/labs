@@ -1,7 +1,8 @@
 #!/bin/bash
 
+set -euo pipefail
+
 # Define environment variables
-export REPO_REF="${REPO_REF:-main}"
 export REPO_NAME="${REPO_NAME:-labs}"
 export REPO_AUTHOR="${REPO_AUTHOR:-noxtgm}"
 export REPO_PATH="${HOME}/.local/share/${REPO_NAME}"
@@ -14,14 +15,6 @@ rm -rf "${REPO_PATH}"
 
 # Clone the repository
 git clone "https://github.com/${REPO_AUTHOR}/${REPO_NAME}.git" "${REPO_PATH}" >/dev/null
-
-# Switch to the specified branch if different from current
-cd "${REPO_PATH}" || exit
-current_branch=$(git rev-parse --abbrev-ref HEAD)
-if [[ "${current_branch}" != "${REPO_REF}" ]]; then
-    git fetch origin "${REPO_REF}" && git checkout "${REPO_REF}"
-fi
-cd - >/dev/null || exit
 
 # Source shared libraries
 source "${REPO_PATH}/lib/init.sh"

@@ -4,13 +4,13 @@
 parse_packages() {
     local file="$1"
     log_info "Parsing packages from $file..."
-    grep -v '^#' "$file" | grep -v '^[[:space:]]*$' | tr '\n' ' '
+    { grep -v '^#' "$file" || :; } | grep -v '^[[:space:]]*$' | tr '\n' ' '
 }
 
-# Manually install yay for AUR package installation
+# Manually install and build yay for AUR package installation
 install_yay() {
     if command -v yay &>/dev/null; then
-        log_success "yay already installed, skipping."
+        log_info "yay already installed, skipping."
         return 0
     fi
     
@@ -19,15 +19,13 @@ install_yay() {
     local yay_dir="${REPO_INSTALL}/yay"
     git clone https://aur.archlinux.org/yay.git "$yay_dir"
     
-    cd "$yay_dir"
-    makepkg -si --noconfirm
-    cd "${REPO_INSTALL}"
+    (cd "$yay_dir" && makepkg -si --noconfirm)
     
     rm -rf "$yay_dir"
     log_success "yay installed."
 }
 
-# Install core packages from the core package list
+# Install official packages from the core package list
 install_core_packages() {
     local packages
     packages=$(parse_packages "${REPO_INSTALL}/core.packages")
