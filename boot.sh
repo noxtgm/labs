@@ -83,13 +83,13 @@ clear
 
 # Remove previous installation if it exists
 echo -e "\n$ascii_logo\n"
-echo -e "${BOLD_WHITE}Welcome agent, please enter your password to begin the installation process${NC}"
+echo -e "${BOLD_WHITE}Welcome agent, please enter your password to begin the installation process.${NC}"
 sudo pacman -Syu --noconfirm --needed git >/dev/null
 rm -rf "${REPO_PATH}"
 
 # Lore dump
 sleep 2
-echo -e "\n${GREEN}[SUCCESS] Agent authentication successful${NC}"
+echo -e "\n${GREEN}[SUCCESS] Agent authentication successful.${NC}"
 sleep 2
 echo -e "${BLUE}[INFO] Initializing secure communication protocols...${NC}"
 sleep 2
@@ -104,9 +104,9 @@ sleep 2
 
 # Switch to the specified branch
 echo -e "\n${BLUE}[INFO] Switching to operational branch:${NC} ${BOLD_WHITE}${REPO_REF}${NC}\n"
-cd "${REPO_PATH}"
+cd "${REPO_PATH}" || exit
 git fetch origin "${REPO_REF}" && git checkout "${REPO_REF}"
-cd -
+cd - || exit
 
 # Lore dump
 echo -e "\n${GREEN}[SUCCESS] Repository secured. Beginning system deployment...${NC}"

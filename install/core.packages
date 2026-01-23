@@ -1,5 +1,11 @@
 # Core packages to be installed with pacman
 
-hyprland
+# Build tools (required for AUR)
+base-devel
+
+# Terminal
 ghostty
-sddm
+
+# Compositor & widgets
+hyprland
+quickshell
