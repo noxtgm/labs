@@ -11,6 +11,12 @@ main() {
     
     # Configure shell
     configure_hyprland_autostart
+    
+    # Reboot system
+    log_success "Installation complete."
+    log_info "Rebooting in 5 seconds..."
+    sleep 5
+    sudo reboot
 }
 
 main
