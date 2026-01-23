@@ -1,4 +1,4 @@
-alias lsx='eza -lh --no-user --group-directories-first --icons=always --time-style=+%Y-%m-%d %H:%M'
+alias lsx='eza -lh --no-user --group-directories-first --icons=always --time-style=+"%Y-%m-%d %H:%M"'
 alias ls='lsx --no-permissions --no-filesize'
 alias lsa='ls -a'
 alias treex='lsx --tree --level=2 --git'
