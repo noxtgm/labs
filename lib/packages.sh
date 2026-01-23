@@ -9,7 +9,7 @@ parse_packages() {
 # Manually install and build yay for AUR package installation
 install_yay() {
     if command -v yay &>/dev/null; then
-        log_info "yay already installed, skipping."
+        log_info "yay already installed, skipping..."
         return 0
     fi
     
