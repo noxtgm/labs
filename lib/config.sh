@@ -11,7 +11,7 @@ link_config() {
     # Create destination directory if it doesn't exist
     mkdir -p "$dest_dir" || return 1
     
-    # Remove existing file/link if it exists
+    # Remove file or link if it exists
     [[ -e "$dest" || -L "$dest" ]] && rm -f "$dest"
     
     # Create symlink
@@ -21,7 +21,7 @@ link_config() {
     fi
 }
 
-# Install a specific config by name
+# Install configs for a specific application
 # Usage: install_config <name>
 # Example: install_config hypr → installs config/hypr/* to ~/.config/hypr/*
 install_config() {
@@ -35,6 +35,7 @@ install_config() {
     
     local link_count=0
     
+    # Link each config
     while IFS= read -r -d '' src_file; do
         local relative_path="${src_file#$REPO_CONFIG/}"
         local dest_file="${HOME}/.config/${relative_path}"
@@ -60,6 +61,7 @@ install_all_configs() {
     
     local config_count=0
     
+    # Link each config
     while IFS= read -r -d '' src_file; do
         local relative_path="${src_file#$REPO_CONFIG/}"
         local dest_file="${HOME}/.config/${relative_path}"

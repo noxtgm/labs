@@ -12,11 +12,12 @@ quickshell
 ghostty
 
 # Shell tools
+git
 eza
+fd
 fzf
 zoxide
 ripgrep
-fd
 
 # Editor
 neovim
