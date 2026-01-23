@@ -4,7 +4,7 @@
 parse_packages() {
     local file="$1"
     log_info "Parsing packages from $file..."
-    { grep -v '^#' "$file" || :; } | grep -v '^[[:space:]]*$' | tr '\n' ' '
+    grep -v '^#' "$file" | grep -v '^[[:space:]]*$' | tr '\n' ' '
 }
 
 # Manually install and build yay for AUR package installation
