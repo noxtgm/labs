@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if ! command -v eza &> /dev/null; then
-    log_error "eza is not installed."
-    exit 1
-fi
-
 # Files
 alias lsx='eza -l --no-user --group-directories-first --icons=always --time-style=+"%Y-%m-%d %H:%M"'
 alias lsxa='lsx -a'
