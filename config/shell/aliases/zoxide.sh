@@ -13,6 +13,6 @@ zd() {
   elif [ -d "$1" ]; then
     builtin cd "$1"
   else
-    z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+    z "$@" && printf "\U000F17A9 " && pwd || log_error "Directory not found."
   fi
 }
