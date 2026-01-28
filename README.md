@@ -29,12 +29,11 @@ bash <(curl -fsSL https://raw.githubusercontent.com/noxtgm/labs/main/boot.sh)
 - `...`: Go up two directories.
 - `....`: Go up three directories.
 
-### Search
+### Search (fzf)
 
-- `find [pattern]`: Find files by name.
 - `ff`: Fuzzy find files.
 
-### Git
+### Version control (git)
 
 - `gaa`: Stage all changes.
 - `gcm [message]`: Commit with message.
@@ -50,7 +49,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/noxtgm/labs/main/boot.sh)
 - `gf`: Fetch from remote.
 - `gfa`: Fetch from all remotes.
 
-## Shell functions
+### Functions
 
 - `compress [file.tar.gz]` / `decompress [file.tar.gz]`: Create or expand a tar.gz file.
 - `iso2sd [image.iso] [/path/to/sdcard]`: Create a bootable drive on an SD card using the referenced iso file.

@@ -8,6 +8,7 @@ export REPO_AUTHOR="${REPO_AUTHOR:-noxtgm}"
 export REPO_PATH="${HOME}/.local/share/${REPO_NAME}"
 export REPO_INSTALL="${REPO_PATH}/install"
 export REPO_CONFIG="${REPO_PATH}/config"
+export REPO_SHELL="${REPO_PATH}/shell"
 export REPO_LIB="${REPO_PATH}/lib"
 
 # Install git if not present
