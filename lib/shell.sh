@@ -1,80 +1,48 @@
 #!/bin/bash
 
+# Backup a file before modification
+_backup_file() {
+    local file="$1"
+    if [[ -f "$file" && ! -L "$file" ]]; then
+        cp "$file" "${file}.bak" && log_info "Backed up: $file"
+    fi
+}
+
+# Add line to file if not present (idempotent)
+_add_line_if_missing() {
+    local file="$1"
+    local line="$2"
+    
+    [[ -f "$file" ]] || touch "$file"
+    grep -qF "$line" "$file" 2>/dev/null || echo "$line" >> "$file"
+}
+
 # Configure shell to auto-start Hyprland on TTY1
-configure_hyprland_autostart() {
+autostart_hyprland() {
     local bash_profile="$HOME/.bash_profile"
+    local line='[[ -z "$DISPLAY" && "$XDG_VTNR" == "1" ]] && exec Hyprland'
     
-    # Auto-start command
-    local autostart_line='[[ -z "$DISPLAY" && "$XDG_VTNR" == "1" ]] && exec Hyprland'
+    _backup_file "$bash_profile"
     
-    if [[ -f "$bash_profile" ]]; then
-        if ! grep -qF "exec Hyprland" "$bash_profile" 2>/dev/null; then
-            echo "" >> "$bash_profile"
-            echo "$autostart_line" >> "$bash_profile"
-        fi
+    if _add_line_if_missing "$bash_profile" "$line"; then
+        log_success "Hyprland auto-start configured."
     else
-        echo "$autostart_line" > "$bash_profile"
+        log_error "Failed to configure Hyprland auto-start."
+        return 1
     fi
-    
-    log_success "Hyprland auto-start configured."
 }
 
-# Configure shell aliases
-configure_shell_aliases() {
-    local aliases_dir="${REPO_SHELL}/aliases"
+# Configure shell to source labs init file
+configure_shell() {
     local bashrc="$HOME/.bashrc"
+    local line="[[ -f \"${REPO_SHELL}/init.sh\" ]] && . \"${REPO_SHELL}/init.sh\""
     
-    # Source line to load all alias files
-    local source_line="for f in \"$aliases_dir\"/*.sh; do [[ -f \"\$f\" ]] && . \"\$f\"; done"
+    _backup_file "$bashrc"
     
-    if [[ -f "$bashrc" ]]; then
-        if ! grep -qF "$aliases_dir" "$bashrc" 2>/dev/null; then
-            echo "" >> "$bashrc"
-            echo "$source_line" >> "$bashrc"
-        fi
+    if _add_line_if_missing "$bashrc" "$line"; then
+        log_success "Shell configured."
     else
-        echo "$source_line" > "$bashrc"
+        log_error "Failed to configure shell."
+        return 1
     fi
-    
-    log_success "Shell aliases configured."
-}
-
-# Configure shell functions
-configure_shell_functions() {
-    local functions_file="${REPO_SHELL}/functions.sh"
-    local bashrc="$HOME/.bashrc"
-    
-    # Source line to load functions
-    local source_line="[[ -f \"$functions_file\" ]] && . \"$functions_file\""
-    
-    if [[ -f "$bashrc" ]]; then
-        if ! grep -qF "$functions_file" "$bashrc" 2>/dev/null; then
-            echo "" >> "$bashrc"
-            echo "$source_line" >> "$bashrc"
-        fi
-    else
-        echo "$source_line" > "$bashrc"
-    fi
-    
-    log_success "Shell functions configured."
-}
-
-# Configure shell settings
-configure_shell_settings() {
-    local settings_file="${REPO_SHELL}/settings.sh"
-    local bashrc="$HOME/.bashrc"
-    
-    # Source line to load settings
-    local source_line="[[ -f \"$settings_file\" ]] && . \"$settings_file\""
-    
-    if [[ -f "$bashrc" ]]; then
-        if ! grep -qF "$settings_file" "$bashrc" 2>/dev/null; then
-            echo "" >> "$bashrc"
-            echo "$source_line" >> "$bashrc"
-        fi
-    else
-        echo "$source_line" > "$bashrc"
-    fi
-    
-    log_success "Shell settings configured."
 }

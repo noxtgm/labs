@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# cd with zoxide smart matching
+# Zoxide smart matching when changing directories
 alias cd="zd"
 zd() {
   if [[ $# -eq 0 ]]; then
