@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if ! command -v zoxide &> /dev/null; then
-    log_error "zoxide is not installed."
-    exit 1
-fi
-
 # cd with zoxide smart matching
 alias cd="zd"
 zd() {

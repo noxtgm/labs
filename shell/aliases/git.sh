@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if ! command -v git &> /dev/null; then
-    log_error "git is not installed."
-    exit 1
-fi
-
 # Commit
 alias gaa='git add -A'
 alias gcm='git commit -m'
