@@ -6,6 +6,40 @@
 bash <(curl -fsSL https://raw.githubusercontent.com/noxtgm/labs/main/boot.sh)
 ```
 
+
+
+## Keybinds
+
+### Applications
+
+- `SUPER`: Application launcher.
+- `SUPER` + `F`: File manager.
+- `SUPER` + `SPACE`: Terminal.
+
+### Window management
+
+- `SUPER` + `Q`: Kill active.
+- `SUPER` + `J`: Toggle split.
+- `SUPER` + `V`: Toggle floating.
+- `SUPER` + `P`: Toggle pseudo.
+
+### Focus management
+
+- `SUPER` + `LEFT`: Move focus left.
+- `SUPER` + `RIGHT`: Move focus right.
+- `SUPER` + `UP`: Move focus up.
+- `SUPER` + `DOWN`: Move focus down.
+
+### Workspace switching
+
+- `SUPER` + `[1-0]`: Switch to workspace 1-10.
+- `SUPER` + `SHIFT` + `[1-0]`: Move window to workspace 1-10.
+- `SUPER` + `S`: Switch to scratchpad workspace.
+- `SUPER` + `SHIFT` + `S`: Move window to scratchpad workspace.
+- `SUPER` + `[MWHEEL_UP-MWHEEL_DOWN]`: Switch to next/last workspace.
+
+
+
 ## Shell commands
 
 ### List (eza)
