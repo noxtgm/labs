@@ -4,11 +4,11 @@
 _backup_file() {
     local file="$1"
     if [[ -f "$file" && ! -L "$file" ]]; then
-        cp "$file" "${file}.bak" && log_info "Backed up: $file"
+        cp "$file" "${file}.bak" && log_info "Backed up $file."
     fi
 }
 
-# Add line to file if not present (idempotent)
+# Add a line to file if not present (idempotent)
 _add_line_if_missing() {
     local file="$1"
     local line="$2"
@@ -25,9 +25,8 @@ autostart_hyprland() {
     _backup_file "$bash_profile"
     
     if _add_line_if_missing "$bash_profile" "$line"; then
-        log_success "Hyprland auto-start configured."
+        log_success "Configured Hyprland auto-start."
     else
-        log_error "Failed to configure Hyprland auto-start."
         return 1
     fi
 }
@@ -40,9 +39,8 @@ configure_shell() {
     _backup_file "$bashrc"
     
     if _add_line_if_missing "$bashrc" "$line"; then
-        log_success "Shell configured."
+        log_success "Configured shell."
     else
-        log_error "Failed to configure shell."
         return 1
     fi
 }

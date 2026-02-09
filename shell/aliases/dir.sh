@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Traverse directories
+# Change directories
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'

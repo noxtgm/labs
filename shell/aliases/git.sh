@@ -1,13 +1,11 @@
 #!/bin/bash
 
-# Commit
+# Version control
 alias gaa='git add -A'
 alias gcm='git commit -m'
 alias gca='git commit --amend'
 alias gcan='git commit --amend --no-edit'
-
-# Branch
-alias gpu='git push'
+alias gph='git push'
 alias gpl='git pull'
 alias gplr='git pull --rebase'
 alias gr='git rebase'

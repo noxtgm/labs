@@ -1,12 +1,12 @@
 # Build tools
 base-devel
 
-# Window switcher
-rofi
-
 # Environment
 hyprland
 quickshell
+
+# Application launcher
+rofi
 
 # Terminal
 ghostty

@@ -16,18 +16,18 @@ if ! command -v git &>/dev/null; then
     sudo pacman -S --noconfirm --needed git
 fi
 
-# Check if execution is a reinstall
+# Check if execution is reinstalling
 export IS_REINSTALL=false
 if [[ -d "${REPO_PATH}" ]]; then
     IS_REINSTALL=true
 fi
 
-# Remove previously existing installation when reinstalling
+# Remove previously existing installation if reinstalling
 if [[ "$IS_REINSTALL" == "true" ]]; then
     rm -rf "${REPO_PATH}"
 fi
 
-# Clone the repository
+# Clone repository
 if ! git clone "https://github.com/${REPO_AUTHOR}/${REPO_NAME}.git" "${REPO_PATH}"; then
     echo -e "\033[0;31m[ERROR] Failed to clone repository.\033[0m"
     exit 1

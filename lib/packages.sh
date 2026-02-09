@@ -3,9 +3,20 @@
 # Parse package list, filtering comments and empty lines
 parse_packages() {
     local file="$1"
+    local -n result_array=$2
     
     [[ -f "$file" ]] || return 1
-    grep -vE '^(#|[[:space:]]*$)' "$file" | tr '\n' ' ' | sed 's/ $//'
+    
+    local line
+    while IFS= read -r line; do
+        # Skip comments and empty lines
+        [[ "$line" =~ ^[[:space:]]*$ ]] && continue
+        [[ "$line" =~ ^[[:space:]]*# ]] && continue
+        result_array+=("$line")
+    done < "$file"
+    
+    [[ ${#result_array[@]} -eq 0 ]] && return 1
+    return 0
 }
 
 # Install packages using specified package manager
@@ -15,32 +26,26 @@ _install_packages() {
     shift 2
     local install_cmd=("$@")
     
-    local packages
-    packages=$(parse_packages "$package_file") || {
-        log_warning "Package file not found: $package_file"
-        return 0
-    }
-    
-    if [[ -z "$packages" ]]; then
-        log_info "No $name packages to install."
+    local packages=()
+    if ! parse_packages "$package_file" packages; then
+        log_warning "Package file not found or empty: $package_file"
         return 0
     fi
     
     log_info "Installing $name packages..."
     
-    # shellcheck disable=SC2086
-    if ! "${install_cmd[@]}" $packages; then
+    if ! "${install_cmd[@]}" "${packages[@]}"; then
         log_error "Failed to install $name packages."
         return 1
     fi
     
-    log_success "$name packages installed."
+    log_success "Successfully installed $name packages."
 }
 
 # Install yay AUR helper
 install_yay() {
     if command -v yay &>/dev/null; then
-        log_info "yay already installed, skipping."
+        log_info "yay already installed. Skipping."
         return 0
     fi
     
@@ -60,17 +65,17 @@ install_yay() {
     fi
     
     rm -rf "$yay_dir"
-    log_success "yay installed."
+    log_success "Successfully installed yay."
 }
 
-# Install official packages from core.packages
+# Install official packages using pacman
 install_core_packages() {
-    _install_packages "core" "${REPO_INSTALL}/core.packages" \
+    _install_packages "core" "${REPO_PATH}/packages.core" \
         sudo pacman -S --noconfirm --needed
 }
 
-# Install AUR packages from aur.packages
+# Install AUR packages using yay
 install_aur_packages() {
-    _install_packages "AUR" "${REPO_INSTALL}/aur.packages" \
+    _install_packages "AUR" "${REPO_PATH}/packages.aur" \
         yay -S --noconfirm --needed --answerdiff None --answerclean None
 }

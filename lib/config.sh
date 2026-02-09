@@ -1,11 +1,17 @@
 #!/bin/bash
 
-# Link a single config file from source to destination
+# Link a config file from source to destination
 _link_config() {
     local src="$1"
     local dest="$2"
     local dest_dir
     dest_dir=$(dirname "$dest")
+    
+    # Validate source file exists
+    if [[ ! -e "$src" ]]; then
+        log_error "Source file does not exist: $src"
+        return 1
+    fi
     
     # Skip if symlink already points to correct target
     if [[ -L "$dest" && "$(readlink "$dest")" == "$src" ]]; then
@@ -81,7 +87,6 @@ install_config() {
 }
 
 # Install all configs
-# Usage: install_all_configs
 install_all_configs() {
     if [[ ! -d "$REPO_CONFIG" ]]; then
         log_warning "Config directory not found: $REPO_CONFIG."

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Fuzzy find and open in neovim
+# Fuzzy find with neovim integration
 alias fzf="ff"
 ff() {
     local file
