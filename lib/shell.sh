@@ -31,16 +31,31 @@ autostart_hyprland() {
     fi
 }
 
-# Configure shell to source labs init file
+# Inline labs settings and aliases into .bashrc so new terminals work with a normal, self-contained .bashrc
 configure_shell() {
     local bashrc="$HOME/.bashrc"
-    local line="[[ -f \"${REPO_SHELL}/init.sh\" ]] && . \"${REPO_SHELL}/init.sh\""
-    
+    local start_marker='# --- labs shell ---'
+    local end_marker='# --- end labs shell ---'
+
     _backup_file "$bashrc"
-    
-    if _add_line_if_missing "$bashrc" "$line"; then
-        log_success "Configured shell."
-    else
-        return 1
+    [[ -f "$bashrc" ]] || touch "$bashrc"
+
+    # Remove existing labs block so reinstall replaces with current repo content
+    if grep -qF "$start_marker" "$bashrc" 2>/dev/null; then
+        sed -i "/$start_marker/,/$end_marker/d" "$bashrc"
     fi
+
+    # Append current settings + aliases (same order as init.sh)
+    {
+        echo ""
+        echo "$start_marker"
+        [[ -f "${REPO_SHELL}/settings.sh" ]] && cat "${REPO_SHELL}/settings.sh"
+        local f
+        for f in "${REPO_SHELL}/aliases"/*.sh; do
+            [[ -f "$f" ]] && cat "$f"
+        done
+        echo "$end_marker"
+    } >> "$bashrc"
+
+    log_success "Configured shell."
 }
